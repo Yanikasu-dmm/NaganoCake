@@ -7,4 +7,10 @@ class Public::CustomersController < ApplicationController
 
   def unsbscribe
   end
+
+  def update
+  end
+
+  def withdraw
+  end
 end
