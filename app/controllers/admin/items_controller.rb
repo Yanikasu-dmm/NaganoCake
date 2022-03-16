@@ -1,8 +1,12 @@
 class Admin::ItemsController < ApplicationController
+  
   def new
   end
 
   def index
+  end
+  
+  def create
   end
 
   def show
@@ -10,4 +14,11 @@ class Admin::ItemsController < ApplicationController
 
   def edit
   end
+  
+  def update
+  end
+  
+  def destroy
+  end
+  
 end
