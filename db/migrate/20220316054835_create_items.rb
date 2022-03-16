@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :price
       t.boolean :is_active
       
-      t.timesta
+      t.timestamps
     end
   end
 end
