@@ -1,2 +1,5 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<h2>Genre一覧</h2>
+
+<% @genres.each do |genre| %>
+  <%= genre.name %>
+<% end %>
