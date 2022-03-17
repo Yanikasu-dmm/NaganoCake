@@ -1,6 +1,6 @@
 <h2>商品新規登録</h2>
 
-<%= form_with model:@item do |f| %>
+<%= form_with model:@item, :url => {:action => :create} do |f| %>
 <div class="form-group">
  <label for="items_imege">商品画像</label>
  <%= f.text_field :image %>
