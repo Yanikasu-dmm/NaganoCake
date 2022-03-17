@@ -7,13 +7,15 @@ class Public::CartsController < ApplicationController
   end
  
   def add_item
-    if CartItem.find_by(item_id: params[:item_id], cart_id: current_cart.id).blank?
-      @cart_item = current_cart.cart_items.create(item_id: params[:item_id])
+    @cart_item ||= current_cart.cart_items.build(item_id: params[:item_id])
+    @cart_item.amount += params[:amount].to_i
+    if  @cart_item.save
+      flash[:notice] = '商品が追加されました。'
+      redirect_to public_my_cart_path
+    else
+      flash[:alert] = '商品の追加に失敗しました。'
+      redirect_to public_item_path(params[:item_id])
     end
-    
-    @cart_item.quantity += params[:item][:amount].to_i
-    @cart_item.save!
-    redirect_to current_cart
   end
 
   def delete_item
