@@ -7,11 +7,11 @@ class Public::CartsController < ApplicationController
   end
  
   def add_item
-    if CartItem.find_by(product_id: params[:product_id], cart_id: current_cart.id).blank?
-      @cart_item = current_cart.cart_items.create(product_id: params[:product_id])
+    if CartItem.find_by(item_id: params[:item_id], cart_id: current_cart.id).blank?
+      @cart_item = current_cart.cart_items.create(item_id: params[:item_id])
     end
     
-    @cart_item.quantity += params[:product][:quantity].to_i
+    @cart_item.quantity += params[:item][:amount].to_i
     @cart_item.save!
     redirect_to current_cart
   end
