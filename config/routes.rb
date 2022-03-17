@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :genres, only:[:create, :index, :edit, :update]
     resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
   end
-  
+
   namespace :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show]
     resources :customers, only:[:show, :edit, :edit, :unsbscribe, :withdraw]
   end
-  
+
   devise_for :customers
   devise_for :admins
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
