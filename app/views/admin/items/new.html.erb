@@ -3,7 +3,7 @@
 <%= form_with model:@item, :url => {:action => :create} do |f| %>
 <div class="form-group">
  <label for="items_imege">商品画像</label>
- <%= f.text_field :image %>
+ <%= f.file_field :image %>
 </div>
 
 <div class="form-group">
@@ -13,22 +13,22 @@
 
 <div class="form-group">
  <label for="items_introduction">商品説明</label>
- <%= f.text_field :introduction %>
+ <%= f.text_area :introduction %>
 </div>
 
 <div class="form-group">
  <label for="items_genre_id">ジャンル</label>
- <%= f.text_field :genre_id %>
+ <%= f.text_field :genre %>
 </div>
 
 <div class="form-group">
  <label for="items_price">税抜価格</label>
- <%= f.text_field :price %>
+ <%= f.number_field :price %>
 </div>
 
 <div class="form-group">
  <label for="items_is_active">販売ステータス</label>
- <%= f.text_field :is_active %>
+ <%= f.select :is_active, [["True", true], ["False", false]] %>
 </div>
 
 <%= f.submit '新規登録'%>
