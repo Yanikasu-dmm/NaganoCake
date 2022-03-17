@@ -1,14 +1,16 @@
 class Public::CartItemsController < ApplicationController
-  def index
-  end
-
-  def create
-  end
+  before_action :setup_item, only:[:destroy]
 
   def destroy
+    @setup_item.destroy
+    redirect_to current_cart
   end
 
-  def destroy_all
+  
+  private setup_item
+  
+  def setup_item
+    @setup_item = CartItem.find([params[:id]])
   end
 
 end
