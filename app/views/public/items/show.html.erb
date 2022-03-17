@@ -1,7 +1,17 @@
-<h1>show</h1>
+<h1>public/show</h1>
 
   <%= image_tag @item.get_image %>
   <%= @item.name %>
   <%= @item.introduction %>
   <%= @item.price%><p>(税込み)</p>
-  
+
+
+  <p>個数</p>
+  <select>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+  <%= link_to 'カートに追加', "#", class: "btn btn-success" %>
