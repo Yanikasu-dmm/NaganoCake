@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :comfirm, :complete, :show]
-    resources :cart_items, only:[:index, :create, :update, :destroy, :destroy_all]
+    get '/my_cart' => 'carts#my_cart'
+    post '/add_item' => 'carts#add_item'
+    delete '/delete_item' => 'carts#delete_item'
     resources :items, only:[:index, :show]
     resources :customers, only:[:show, :edit, :edit, :unsbscribe, :withdraw]
   end
