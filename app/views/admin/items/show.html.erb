@@ -1,2 +1,36 @@
 <h2>商品詳細</h2>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class= "container">
+ <div class= "row">
+  <div class="col-lg-4">
+   <!--この行に画像表示コード入力-->
+  </div>
+  <div class="col-lg-8">
+   <table class = "table">
+    <tbody>
+     <tr>
+     <td>商品名</td>　
+      <td><%= @item.name %></td>
+     </tr>
+     <tr>
+      <td>商品説明</td>　
+      <td><%= @item.introduction %></td>
+     </tr>
+     <tr>
+      <td>ジャンル</td>　
+      <td>
+       <!--この行にジャンル詳細入力-->
+      </td>
+     </tr>
+     <tr>
+      <td>税込価格（税抜価格）</td>　
+      <td><%= @item.price %></td>
+     </tr>
+     <tr>
+      <td>販売ステータス</td>　
+      <td><%= @item.is_active %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</div>
