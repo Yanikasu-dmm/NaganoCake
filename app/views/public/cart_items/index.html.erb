@@ -3,5 +3,8 @@
     <%= cart_item.item.name %>
     <%= cart_item.item.price %>
     <%= cart_item.amount %>
+    <%= link_to 'delete', public_cart_item_path(cart_item.id), method: :delete %>
   </li>
 <% end %>
+
+<%= link_to 'delete_all', destroy_all_public_cart_items_path, method: :delete %>

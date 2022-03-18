@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :comfirm, :complete, :show]
     resources :items, only:[:index, :show]
-    resources :cart_items, only:[:index, :create, :destroy]
+    resources :cart_items, only:[:index, :create, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     resources :customers, only:[:show, :edit, :edit, :unsbscribe, :withdraw]
   end
 
