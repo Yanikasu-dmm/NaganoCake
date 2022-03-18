@@ -1,6 +1,6 @@
 <h2>商品編集</h2>
 
-<%= form_with model:@item, :url => {:action => :create} do |f| %>
+<%= form_with model:@item, :url => {:action => :update} do |f| %>
 <div class="form-group">
  <label for="items_imege">商品画像</label>
  <%= f.file_field :image %>
@@ -28,9 +28,9 @@
 
 <div class="form-group">
  <label for="items_is_active">販売ステータス</label>
- <%= f.select :is_active, [["True", true], ["False", false]] %>
+ <%= f.select :is_active, [["販売中", true], ["販売停止中", false]] %>
 </div>
 
-<%= f.submit '変更を保存'%>
+<%= f.submit '変更を保存',class:"btn btn-sm btn-success"%>
 
 <% end %>
