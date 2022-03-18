@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :complete, :show]
-    post '/orders' => "orders#comfirm"
+    post '/orders/comfirm' => "orders#comfirm"
     resources :items, only:[:index, :show]
     resources :cart_items, only:[:index, :create, :destroy] do
       collection do
