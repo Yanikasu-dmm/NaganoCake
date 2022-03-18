@@ -1,16 +1,23 @@
 class Public::CartItemsController < ApplicationController
-  before_action :setup_item, only:[:destroy]
+  def create
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.save
+    redirect_to public_cart_items_path
+  end
+
+  def index
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+  end
 
   def destroy
-    @setup_item.destroy
-    redirect_to current_cart
   end
 
-  
-  private setup_item
-  
-  def setup_item
-    @setup_item = CartItem.find([params[:id]])
+  def destroy_all
   end
 
+  private
+
+  def cart_item_params
+    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
+  end
 end
