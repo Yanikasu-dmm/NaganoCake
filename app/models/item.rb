@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   has_many :genre_maps, dependent: :destroy
   has_many :genres, through: :genre_maps
-  has_many :carts, through: :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :order_details
 
   has_one_attached :image
