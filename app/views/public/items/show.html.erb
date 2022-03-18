@@ -5,7 +5,7 @@
   <%= @item.price%><p>(税込み)</p>
 
   <%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local: true do |f| %>
-  <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
     <%= f.hidden_field :item_id, value: @item.id %>
     <%= f.number_field :amount %>
     <%= f.submit "add_to_cart" %>
