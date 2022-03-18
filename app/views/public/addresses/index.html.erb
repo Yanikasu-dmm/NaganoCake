@@ -5,7 +5,7 @@
   <li>郵便番号（ハイフンなし）</li>
   <%= f.text_field :post_code %>
   <li>住所</li>
-  <%= f.text_area :address %>
+  <%= f.text_area :address_code %>
   <li>宛名</li>
   <%= f.text_field :name %>
   <%= f.submit "新規登録", class: "btn btn-success" %>
@@ -21,14 +21,14 @@
         <th></th>
       </tr>
     </thead>
-    <% @addresses.each do |addresses| %>
+    <% @addresses.each do |address| %>
     <tr>
-      <td><%= addresses.post_code %></td>
-      <td><%= addresses.address %></td>
-      <td><%= addresses.name %></td>
+      <td><%= address.post_code %></td>
+      <td><%= address.address_code %></td>
+      <td><%= address.name %></td>
       <td>
-        <%= link_to '編集する', edit_public_address_path, class: "btn btn-success" %>
-        <%= link_to '削除する', destroy_public_address_path, method:delete, "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to '編集する', edit_public_address_path(address.id), class: "btn btn-success" %>
+        <%= link_to '削除する', public_address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
       </tr>
     </tbody>
     <% end %>
