@@ -1,17 +1,11 @@
 <h1>public/show</h1>
 
-  <%= image_tag @item.get_image %>
   <%= @item.name %>
   <%= @item.introduction %>
   <%= @item.price%><p>(税込み)</p>
 
-
-  <p>個数</p>
-  <select>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-  </select>
-  <%= link_to 'カートに追加', "#", class: "btn btn-success" %>
+  <%= form_with model: [@cart_item, @item], url: public_add_item_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.number_field :amount %>
+    <%= f.submit "add_to_cart" %>
+  <% end %>
