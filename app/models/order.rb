@@ -3,6 +3,10 @@ class Order < ApplicationRecord
   has_many :cart_items, dependent: :destroy
 
   enum payment_method: { credit_card: 0, transfer: 1 }
-  enum select_addresses: { my_address: 0, registrated_address: 1, new_address: 2 }
+  enum status: { wating_payment: 0, confirming: 1, producting: 2, preparation: 3, shipped: 4 }
 
+
+  def get_tax_include_price
+    order.total_price * (order.postage / 100)
+  end
 end
