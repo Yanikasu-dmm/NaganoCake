@@ -1,8 +1,8 @@
 <h3>商品一覧（全<%= @items.count %>件）</h3>
 
   <% @items.each do |items| %>
-
+   <%= image_tag items.get_image, size: '100x100' %>
     <%= link_to items.name, public_item_path(items.id) %>
     <%= items.price %>
-    
+
   <% end %>
