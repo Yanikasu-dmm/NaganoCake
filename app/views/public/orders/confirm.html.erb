@@ -9,3 +9,5 @@
 <%= @order.name %>
 <%= @order.address %>
 <%= @order.payment_method %>
+
+<%= link_to 'checkout', public_orders_path(id: @order.id), :method => :post %>
