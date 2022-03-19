@@ -1,6 +1,6 @@
 <h1>配送先編集</h1>
 
-<%= form_with model: @address, local: true do |f| %>
+<%= form_with model: @address, :url => {:action => :update }, local: true do |f| %>
   <li>郵便番号（ハイフンなし）</li>
   <%= f.text_field :post_code %>
   <li>住所</li>
