@@ -1,3 +1,9 @@
+<% @cart_items.each do |cart_item| %>
+    <%= cart_item.item.name %>
+    <%= cart_item.amount %>
+    <%= cart_item.item.price %>
+<% end %>
+
 <%= @order.customer_id %>
 <%= @order.post_code %>
 <%= @order.name %>

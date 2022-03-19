@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2022_03_17_050843) do
     t.integer "ship_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_order_details_on_item_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -147,4 +148,5 @@ ActiveRecord::Schema.define(version: 2022_03_17_050843) do
   add_foreign_key "cart_items", "items"
   add_foreign_key "genre_maps", "genres"
   add_foreign_key "genre_maps", "items"
+  add_foreign_key "order_details", "items"
 end
