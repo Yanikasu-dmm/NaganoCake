@@ -25,7 +25,12 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :customers, only:[:show, :edit, :edit, :unsbscribe, :withdraw]
+    resources :customers, only:[:show, :edit, :edit] do
+      collection do
+        get 'unsbscribe'
+        patch 'withdraw'
+      end
+    end
   end
 
   devise_for :customers
