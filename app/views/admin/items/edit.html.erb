@@ -1,36 +1,43 @@
-<h2>商品編集</h2>
-
-<%= form_with model:@item, :url => {:action => :update} do |f| %>
-<div class="form-group">
- <label for="items_imege">商品画像</label>
- <%= f.file_field :image %>
+<div class="container">
+ <h2 class="pr-3 pt-3">商品編集</h2>
+  <div class="row justify-content-md-center">
+   <%= form_with model:@item, :url => {:action => :update} do |f| %>
+   <div class="form-group row">
+    <label for="items_imege">商品画像</label>
+    <%= f.file_field :image %>
+   </div>
+   
+   <div class="form-group row">
+    <label for="items_name">商品名</label>
+    <%= f.text_field :name %>
+   </div>
+   
+   <div class="form-group row">
+    <label for="items_introduction">商品説明</label>
+    <%= f.text_field :introduction %>
+   </div>
+   
+   <div class="form-group row">
+    <label for="items_genre_id">ジャンル</label>
+    <%= f.text_field :genre %>
+   </div>
+   
+   <div class="form-group row">
+    <label for="items_price">税抜価格</label>
+    <%= f.number_field :price %>
+   </div>
+   
+   <div class="form-group　row">
+    <label for="items_is_active">販売ステータス</label>
+    <%= f.radio_button :items_is_active, true %>
+    <%= f.label :is_active, "販売中" %>
+    <%= f.radio_button :items_is_active, false %>
+    <%= f.label :is_active, "販売停止中" %>
+   </div>
+ 
+   <%= f.submit '変更を保存',class:"btn btn-sm btn-success"%>
+   
+   <% end %>
+  
+ </div>
 </div>
-
-<div class="form-group">
- <label for="items_name">商品名</label>
- <%= f.text_field :name %>
-</div>
-
-<div class="form-group">
- <label for="items_introduction">商品説明</label>
- <%= f.text_field :introduction %>
-</div>
-
-<div class="form-group">
- <label for="items_genre_id">ジャンル</label>
- <%= f.text_field :genre %>
-</div>
-
-<div class="form-group">
- <label for="items_price">税抜価格</label>
- <%= f.number_field :price %>
-</div>
-
-<div class="form-group">
- <label for="items_is_active">販売ステータス</label>
- <%= f.select :is_active, [["販売中", true], ["販売停止中", false]] %>
-</div>
-
-<%= f.submit '変更を保存',class:"btn btn-sm btn-success"%>
-
-<% end %>
