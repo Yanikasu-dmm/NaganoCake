@@ -2,7 +2,11 @@
  <h4>商品詳細</h4>
  <div class= "row">
   <div class="col-lg-4">
-   <%= image_tag @item.image %>
+   <% if @item.image.present? %>
+    <%= image_tag @item.image,size: '300x200' %>
+   <% else %>
+    <%= image_tag "no_image", size: '300x200'%>
+   <% end %>
   </div>
   <div class="col-lg-8">
    <table class = "table table-borderless">
