@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about'
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
-    resources :orders, only:[:new, :create, :index, :comfirm, :complete, :show]
+    resources :orders, only:[:new, :create, :index, :complete, :show]
+    post '/orders/confirm' => "orders#confirm"
     resources :items, only:[:index, :show]
     resources :cart_items, only:[:index, :create, :destroy] do
       collection do

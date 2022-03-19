@@ -130,10 +130,12 @@ ActiveRecord::Schema.define(version: 2022_03_17_050843) do
     t.integer "customer_id"
     t.string "post_code"
     t.text "address"
+    t.integer "address_id"
+    t.integer "select_address"
     t.string "name"
     t.integer "postage"
     t.integer "total_price"
-    t.integer "pay_way"
+    t.integer "payment_method"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
