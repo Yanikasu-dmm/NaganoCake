@@ -4,16 +4,19 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def complete
+    @order = Order.find(params[:id])
   end
 
   def show
+    @order_details = OrderDetail.where(order_id: params[:id])
   end
 
   def create
-    @order = Order.find(params[:])
+    @order = Order.find(params[:id])
     cart_items = CartItem.where(customer_id: current_customer.id)
     cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -23,6 +26,9 @@ class Public::OrdersController < ApplicationController
       @order_detail.amount = cart_item.amount
       @order_detail.save
     end
+    @order.save
+    cart_items.destroy_all
+    redirect_to action: :complete, id: @order.id
   end
 
   def confirm
@@ -43,7 +49,7 @@ class Public::OrdersController < ApplicationController
       @order.post_code = params[:order][:post_code]
       @order.name = params[:order][:name]
     end
-
+    @order.save
     @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 

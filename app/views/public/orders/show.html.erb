@@ -1,2 +1,6 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h1>注文履歴</h1>
+<% @order_details.each do |order_detail| %>
+  <%= order_detail.order_id %>
+  <%= order_detail.item_id %>
+  <%= order_detail.price %>
+<% end %>
