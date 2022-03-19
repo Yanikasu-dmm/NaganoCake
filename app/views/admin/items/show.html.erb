@@ -1,11 +1,11 @@
-<h2>商品詳細</h2>
 <div class= "container">
+ <h4>商品詳細</h4>
  <div class= "row">
   <div class="col-lg-4">
-   <!--この行に画像表示コード入力-->
+   <%#= image_tag @item.image %>
   </div>
   <div class="col-lg-8">
-   <table class = "table">
+   <table class = "table table-borderless">
     <tbody>
      <tr>
      <td>商品名</td>　
@@ -18,18 +18,24 @@
      <tr>
       <td>ジャンル</td>　
       <td>
-       <% item.genres.each do |genre| %>
+       <% @item.genres.each do |genre| %>
         <%= genre.name %>
        <% end %>
       </td>
      </tr>
      <tr>
-      <td>税込価格（税抜価格）</td>　
-      <td><%= @item.price %></td>
+      <td>税込価格<br>（税抜価格）</td>　
+      <td><%= @item.price %>  (<%= @item.price %>)</td>
      </tr>
      <tr>
       <td>販売ステータス</td>　
-      <td><%= @item.is_active %></td>
+      <td>
+       <% if @item.is_active %>
+        <span class="text-secondary">販売停止中</span>
+       <% else %>
+        <span class="text-success">販売中</span>
+       <% end %>
+      </td>
      </tr>
     </tbody>
    </table>
