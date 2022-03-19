@@ -7,6 +7,6 @@ class Order < ApplicationRecord
 
 
   def get_tax_include_price
-    order.total_price * (order.postage / 100)
+    order.total_price * (1 + order.postage / 100)
   end
 end
