@@ -1,3 +1,9 @@
+<% @order_details.each do |order_detail| %>
+    <%= order_detail.item.name %>
+    <%= order_detail.amount %>
+    <%= order_detail.price %>
+<% end %>
+
 <%= @order.customer_id %>
 <%= @order.post_code %>
 <%= @order.name %>
