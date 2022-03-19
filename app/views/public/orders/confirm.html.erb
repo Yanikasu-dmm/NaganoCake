@@ -1,7 +1,7 @@
-<% @order_details.each do |order_detail| %>
-    <%= order_detail.item.name %>
-    <%= order_detail.amount %>
-    <%= order_detail.price %>
+<% @cart_items.each do |cart_item| %>
+    <%= cart_item.item.name %>
+    <%= cart_item.amount %>
+    <%= cart_item.item.price %>
 <% end %>
 
 <%= @order.customer_id %>
