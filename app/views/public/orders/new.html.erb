@@ -1,6 +1,7 @@
 <h1>注文情報入力</h1>
 
-<%= form_with model: @order, :url => {:action => :comfirm}, local: true do |f| %>
+<%= form_with model: @order, :url => {:action => :confirm}, local: true do |f| %>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
   <%= f.label :payment_method, '支払い方法' %>
   <%= f.radio_button :payment_method, "credit_card" %>
   <%= f.label :payment_method, "クレジットカード" %>
@@ -22,6 +23,7 @@
   <%= f.text_area :address, value: "" %>
   <%= f.label :name, "宛名" %>
   <%= f.text_field :name, value: "" %>
+  <%= f.hidden_field :status, value: "wating_payment" %>
 
   <%= f.submit %>
 

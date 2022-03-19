@@ -16,8 +16,10 @@ class Public::OrdersController < ApplicationController
 
   end
 
-  def comfirm
+  def confirm
+    postage = 10
     @order = Order.new(order_params)
+    @order.postage = postage
     if params[:order][:select_address] == "0"
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
@@ -33,7 +35,6 @@ class Public::OrdersController < ApplicationController
       @order.name = params[:order][:name]
     end
 
-    binding.pry
     # @order.save
   end
 
@@ -41,6 +42,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :post_code, :address, :name, :select_address, :address_id)
+    params.require(:order).permit(:customer_id, :payment_method, :post_code, :address, :name, :select_address, :address_id, :status)
   end
 end
