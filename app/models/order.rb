@@ -6,7 +6,5 @@ class Order < ApplicationRecord
   enum status: { wating_payment: 0, confirming: 1, producting: 2, preparation: 3, shipped: 4 }
 
 
-  def get_tax_include_price
-    order.total_price * (1 + order.postage / 100)
-  end
+  
 end

@@ -20,4 +20,6 @@ class Item < ApplicationRecord
       self.genres << new_genre_map
     end
   end
+  
+  
 end

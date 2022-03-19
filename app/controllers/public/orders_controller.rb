@@ -13,6 +13,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.find(params[:])
     cart_items = CartItem.where(customer_id: current_customer.id)
     cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -22,7 +23,6 @@ class Public::OrdersController < ApplicationController
       @order_detail.amount = cart_item.amount
       @order_detail.save
     end
-    @order_details = OrderDetail.all
   end
 
   def confirm
