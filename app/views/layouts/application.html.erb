@@ -11,6 +11,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="py-3">
+      <%= render 'layouts/header' %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
