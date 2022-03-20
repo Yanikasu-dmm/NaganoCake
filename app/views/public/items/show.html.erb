@@ -7,7 +7,7 @@
      </thead>
      <tbody>
       <% @genres.each do |genre| %>
-       <tr><td><%= link_to genre.name, '#' %></td></tr>
+       <tr><td><%= link_to genre.name, public_items_path(genre_id: genre.id) %></td></tr>
       <% end %>
      </tbody>
     </table>
@@ -20,7 +20,7 @@
           <p><%= @item.name %></p>
           <p><%= @item.introduction %></p>
           <%= @item.price %><strong>(税込み)</strong>
-        
+
           <%= form_with model: @cart_item, url: public_cart_items_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :customer_id, value: current_customer.id %>
             <%= f.hidden_field :item_id, value: @item.id %>

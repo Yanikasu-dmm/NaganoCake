@@ -1,13 +1,13 @@
-<header class="navbar navbar navbar-dark bg-light navbar-inverse fixed-top">
+<header class="navbar navbar navbar-dark bg-light navbar-inverse">
  <div class="container">
   <nav class='nav navbar-nav navbar-left' >
-   <h3><a class="navbar-brand p-3" href = "/" >ロゴ</a></h3>
+   <h2><a class="navbar-brand p-3" href = "/" >NaganoCake</a></h2>
   </nav>
 <ul class="d-flex flex-row navbar-nav ml-auto">
 <% if customer_signed_in? %>
 
 <li class="nav-item m-3">
- <%= link_to "マイページ", "#", class: 'btn btn-outline-secondary' %>
+ <%= link_to "マイページ", public_customer_path(current_customer.id), class: 'btn btn-outline-secondary' %>
 </li>
 
 <li class="nav-item m-3">
@@ -39,9 +39,7 @@
 </li>
 
 <li class="nav-item m-3">
- <%= link_to new_customer_session_path,class:'text-light nav-link' do %>
-  <i class ="fas fa-sign-in-alt"></i>Log in
- <% end %>
+ <%= link_to 'Log in', new_customer_session_path, class: "btn btn-outline-secondary" %>
 </li>
 <% end %>
 </ul>
