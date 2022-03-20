@@ -24,7 +24,7 @@
    <% @items.each do |items| %>
    <div class="col-md-4">
     <h3><%= image_tag items.get_image, size: '100x100' %></h3>
-     <p><%= link_to items.name, public_item_path(items.id) %></p>
+     <p><%= link_to items.name, item_path(items.id) %></p>
     <p><%= items.price %></p>
      </div>
    <% end %>

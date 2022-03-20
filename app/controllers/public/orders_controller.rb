@@ -1,9 +1,13 @@
 class Public::OrdersController < ApplicationController
 
   def new
-    cart_items = CartItem.where(customer_id: current_customer)
-    if cart_items.empty?
-      redirect_to public_items_path
+    @cart_items = CartItem.where(customer_id: current_customer)
+    if @cart_items.empty?
+      redirect_to items_path
+    end
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.sum_of_price
     end
     @order = Order.new
     @full_address =
@@ -41,7 +45,7 @@ class Public::OrdersController < ApplicationController
       redirect_to action: :complete, id: @order.id
     else
       @order.destroy
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     end
   end
 
