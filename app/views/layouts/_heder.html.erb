@@ -1,49 +1,49 @@
-<header class="navbar navbar navbar-dark bg-light navbar-inverse">
+<header class="navbar navbar navbar-dark bg-light navbar-inverse mb-5">
  <div class="container">
   <nav class='nav navbar-nav navbar-left' >
    <h3><a class="navbar-brand p-3" href = "/" >ロゴ</a></h3>
   </nav>
-<ul class="d-flex flex-row navbar-nav ml-auto">
-<% if customer_signed_in? %>
+  <ul class="d-flex flex-row navbar-nav ml-auto">
+  <% if customer_signed_in? %>
 
-<li class="nav-item m-3">
- <%= link_to "マイページ", "#", class: 'btn btn-outline-secondary' %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to "マイページ", "#", class: 'btn btn-outline-secondary' %>
+  </li>
 
-<li class="nav-item m-3">
- <%= link_to "商品一覧", public_items_path, class: 'btn btn-outline-secondary' %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to "商品一覧", public_items_path, class: 'btn btn-outline-secondary' %>
+  </li>
 
-<li class="nav-item m-3">
- <%= link_to "カート", public_cart_items_path, class: 'btn btn-outline-secondary' %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to "カート", public_cart_items_path, class: 'btn btn-outline-secondary' %>
+  </li>
 
-<li class="nav-item m-3">
- <%= link_to destroy_customer_session_path, :method => :delete ,class:'btn btn-outline-secondary' do %>
-  <i class ="fas fa-sign-out-alt"></i>Log out
- <% end %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to destroy_customer_session_path, :method => :delete ,class:'btn btn-outline-secondary' do %>
+    <i class ="fas fa-sign-out-alt"></i>Log out
+   <% end %>
+  </li>
 
-<% else %>
+  <% else %>
 
-<li class="nav-item m-3">
- <%= link_to "About", public_about_path, class: 'btn btn-outline-secondary' %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to "About", public_about_path, class: 'btn btn-outline-secondary' %>
+  </li>
 
-<li class="nav-item m-3">
- <%= link_to "商品一覧", public_items_path, class: 'btn btn-outline-secondary' %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to "商品一覧", public_items_path, class: 'btn btn-outline-secondary' %>
+  </li>
 
-<li class="nav-item m-3">
- <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary' %>
-</li>
+  <li class="nav-item m-3">
+   <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary' %>
+  </li>
 
-<li class="nav-item m-3">
- <%= link_to new_customer_session_path,class:'text-light nav-link' do %>
-  <i class ="fas fa-sign-in-alt"></i>Log in
- <% end %>
-</li>
-<% end %>
-</ul>
-</div>
+  <li class="nav-item m-3">
+   <%= link_to new_customer_session_path,class:'text-light nav-link' do %>
+    <i class ="fas fa-sign-in-alt"></i>Log in
+   <% end %>
+  </li>
+  <% end %>
+  </ul>
+ </div>
 </header>
