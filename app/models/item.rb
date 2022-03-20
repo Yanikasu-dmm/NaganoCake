@@ -32,7 +32,8 @@ class Item < ApplicationRecord
 
   def get_tax_include_price
     tax = 10
-    return self.price * (1 + tax / 100)
+    add_tax = 1 + tax.to_f / 100
+    (self.price.to_f * add_tax).round
   end
 
 end
