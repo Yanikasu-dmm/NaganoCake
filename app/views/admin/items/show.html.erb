@@ -12,15 +12,15 @@
    <table class = "table table-borderless">
     <tbody>
      <tr>
-     <td>商品名</td>　
+     <td>商品名</td>
       <td><%= @item.name %></td>
      </tr>
      <tr>
-      <td>商品説明</td>　
+      <td>商品説明</td>
       <td><%= @item.introduction %></td>
      </tr>
      <tr>
-      <td>ジャンル</td>　
+      <td>ジャンル</td>
       <td>
        <% @item.genres.each do |genre| %>
         <%= genre.name %>
@@ -28,11 +28,11 @@
       </td>
      </tr>
      <tr>
-      <td>税込価格<br>（税抜価格）</td>　
+      <td>税込価格<br>（税抜価格）</td>
       <td><%= @item.price %>  (<%= @item.price %>)</td>
      </tr>
      <tr>
-      <td>販売ステータス</td>　
+      <td>販売ステータス</td>
       <td>
        <% if @item.is_active %>
         <span class="text-secondary">販売停止中</span>

@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2022_03_17_050843) do
     t.integer "order_id"
     t.integer "price"
     t.integer "amount"
-    t.integer "ship_status"
+    t.integer "product_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_order_details_on_item_id"

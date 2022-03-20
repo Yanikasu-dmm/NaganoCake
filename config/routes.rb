@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'admin' => 'homes#top'
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:show, :update]
+    resources :order_details, only:[:update]
     resources :genres, only:[:create, :index, :edit, :update]
     resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
   end
