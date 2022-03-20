@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
   end
 
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :customers, only:[:show, :edit, :edit] do
+    resources :customers, only:[:show] do
       collection do
         get 'unsbscribe'
         patch 'withdraw'
