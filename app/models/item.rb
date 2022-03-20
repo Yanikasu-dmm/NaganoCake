@@ -30,4 +30,9 @@ class Item < ApplicationRecord
     image
   end
 
+  def get_tax_include_price
+    tax = 10
+    return self.price * (1 + tax / 100)
+  end
+
 end

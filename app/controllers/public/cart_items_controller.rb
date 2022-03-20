@@ -15,8 +15,12 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.item.price * cart_item.amount
+    end
   end
-
+  
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
