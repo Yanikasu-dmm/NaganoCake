@@ -31,7 +31,7 @@
             <td><%= cart_item.amount * cart_item.item.price %></td>
             <td><%= cart_item.amount %></td>
             <td>
-              <%= link_to public_cart_item_path(cart_item.id) do %>
+              <%= link_to public_cart_item_path(cart_item.id) ,:method => :delete do %>
                 <button class="btn btn-danger">削除する</button>
               <% end %>
             </td>

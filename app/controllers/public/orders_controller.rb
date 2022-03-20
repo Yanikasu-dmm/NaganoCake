@@ -1,13 +1,17 @@
 class Public::OrdersController < ApplicationController
 
   def new
+    cart_items = CartItem.where(customer_id: current_customer)
+    if cart_items.empty?
+      redirect_to public_items_path
+    end
     @order = Order.new
     @full_address =
     '〒' + current_customer.post_code + ' ' + current_customer.address + ' ' + current_customer.last_name + current_customer.first_name
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id).where.not(status: nil)
+    @orders = Order.where(customer_id: current_customer.id).where.not(status: nil).order(created_at: "DESC")
     @order_details = OrderDetail.all
   end
 
