@@ -31,7 +31,7 @@
             <td><%= cart_item.amount * cart_item.item.price %></td>
             <td><%= cart_item.amount %></td>
             <td>
-              <%= link_to public_cart_item_path(cart_item.id) ,:method => :delete do %>
+              <%= link_to cart_item_path(cart_item.id) ,:method => :delete do %>
                 <button class="btn btn-danger">削除する</button>
               <% end %>
             </td>
@@ -47,7 +47,7 @@
   </div>
   <div class="row justify-content-between">
     <div class="col">
-      <%= link_to public_items_path do %>
+      <%= link_to items_path do %>
         <button class="btn btn-primary">買い物を続ける</button>
       <% end %>
     </div>
@@ -62,7 +62,7 @@
   </div>
   <% if !@cart_items.empty? %>
     <div class="row justify-content-center mt-4">
-      <%= link_to new_public_order_path do %>
+      <%= link_to new_order_path do %>
         <button class="btn btn-success">情報入力に進む</button>
       <% end %>
     </div>

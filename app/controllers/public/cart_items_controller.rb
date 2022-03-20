@@ -10,7 +10,7 @@ class Public::CartItemsController < ApplicationController
       end
     end
     @cart_item.save
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end
 
   def index
@@ -20,16 +20,16 @@ class Public::CartItemsController < ApplicationController
       @total_price += cart_item.item.price * cart_item.amount
     end
   end
-  
+
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end
 
   def destroy_all
     CartItem.destroy_all
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end
 
   private
