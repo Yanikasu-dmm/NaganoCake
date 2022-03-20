@@ -1,12 +1,71 @@
-<% @cart_items.each do |cart_item| %>
-  <li>
-    <%= cart_item.item.name %>
-    <%= cart_item.item.price %>
-    <%= cart_item.amount %>
-    <%= link_to 'delete', public_cart_item_path(cart_item.id), method: :delete %>
-  </li>
-<% end %>
+<div class="container mt-3">
+  <div class="row justify-content-between mb-4">
+      <div class="title col-3 px-auto">
+        <p class="text-dark bg-light text-center">ショッピングカート</p>
+      </div>
+      <% if !@cart_items.empty? %>
+        <div class="col-3">
+          <button class="btn btn-danger">カートを空にする</button>
+        </div>
+      <% end %>
+  </div>
+  <div class="row">
+    <% if !@cart_items.empty? %>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">商品名</th>
+            <th scope="col"></th>
+            <th scope="col">単価</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <th scope="row"></th>
+            <td><%= cart_item.item.name %></td>
+            <td><%= cart_item.item.price %></td>
+            <td><%= cart_item.amount * cart_item.item.price %></td>
+            <td><%= cart_item.amount %></td>
+            <td>
+              <%= link_to public_cart_item_path(cart_item.id) do %>
+                <button class="btn btn-danger">削除する</button>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="col d-flex align-items-center" style="height:400px;">
+        <h1>カートは空です</h1>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-between">
+    <div class="col">
+      <%= link_to public_items_path do %>
+        <button class="btn btn-primary">買い物を続ける</button>
+      <% end %>
+    </div>
+    <% if !@cart_items.empty? %>
+      <div class="col-5">
+        <table class="table table-bordered">
+          <td>合計金額</td>
+          <td><%= @total_price %></td>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <% if !@cart_items.empty? %>
+    <div class="row justify-content-center mt-4">
+      <%= link_to new_public_order_path do %>
+        <button class="btn btn-success">情報入力に進む</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'delete_all', destroy_all_public_cart_items_path, method: :delete %>
-
-<%= link_to 'checkout', new_public_order_path %>

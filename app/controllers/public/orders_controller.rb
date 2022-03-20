@@ -1,10 +1,14 @@
 class Public::OrdersController < ApplicationController
+
   def new
     @order = Order.new
+    @full_address =
+    '〒' + current_customer.post_code + ' ' + current_customer.address + ' ' + current_customer.last_name + current_customer.first_name
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id).where.not(status: nil)
+    @order_details = OrderDetail.all
   end
 
   def complete
@@ -13,10 +17,12 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order_details = OrderDetail.where(order_id: params[:id])
+    @order = Order.find(params[:id])
   end
 
   def create
     @order = Order.find(params[:id])
+    @order.status = "wating_payment"
     cart_items = CartItem.where(customer_id: current_customer.id)
     cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
@@ -26,15 +32,18 @@ class Public::OrdersController < ApplicationController
       @order_detail.amount = cart_item.amount
       @order_detail.save
     end
-    @order.save
-    cart_items.destroy_all
-    redirect_to action: :complete, id: @order.id
+    if @order.save
+      cart_items.destroy_all
+      redirect_to action: :complete, id: @order.id
+    else
+      @order.destroy
+      redirect_to public_cart_items_path
+    end
   end
 
   def confirm
-    postage = 10
     @order = Order.new(order_params)
-    @order.postage = postage
+    @order.customer_id = current_customer.id
     if params[:order][:select_address] == "0"
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
@@ -49,14 +58,20 @@ class Public::OrdersController < ApplicationController
       @order.post_code = params[:order][:post_code]
       @order.name = params[:order][:name]
     end
-    @order.save
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    @order.total_price = 0
+    @cart_items.each do |cart_item|
+      @order.total_price += cart_item.item.get_tax_include_price * cart_item.amount
+    end
+   @order.save
+   @full_address = '〒' + @order.post_code + ' ' + @order.address + ' ' + @order.name
   end
 
 
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :payment_method, :post_code, :address, :name, :select_address, :address_id, :status)
+    params.require(:order).permit(:customer_id, :payment_method, :post_code, :address, :name, :select_address, :address_id, :postage)
   end
+
 end
