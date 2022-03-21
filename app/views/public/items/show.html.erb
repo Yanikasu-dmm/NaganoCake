@@ -7,7 +7,7 @@
      </thead>
      <tbody>
       <% @genres.each do |genre| %>
-       <tr><td><%= link_to genre.name, public_items_path(genre_id: genre.id) %></td></tr>
+       <tr><td><%= link_to genre.name, items_path(genre_id: genre.id) %></td></tr>
       <% end %>
      </tbody>
     </table>
@@ -24,7 +24,11 @@
           <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.number_field :amount %>
-            <%= f.submit "add_to_cart", class: "btn btn-success" %>
+            <% if @item.is_active %>
+              <%= f.submit "カートに入れる", class: "btn btn-success" %>
+            <% else %>
+              <button class="btn btn-warning" disabled=true>販売停止中</button>
+            <% end %>
           <% end %>
           </div>
       </div>
