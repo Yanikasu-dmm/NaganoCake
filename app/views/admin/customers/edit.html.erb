@@ -41,7 +41,7 @@
 
  <div class="form-group">
   <label for="customer_is_deleted">会員ステータス</label>
-   <%= f.select :is_deleted, [["True", true], ["False", false]] %>
+   <%= f.select :is_deleted, [["有効", false], ["退会", true]] %>
  </div>
 
  <%= f.submit '変更を保存'%>

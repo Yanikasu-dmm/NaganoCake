@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'admin' => 'homes#top'
     resources :customers, only:[:index, :show, :edit, :update]
-    resources :orders, only:[:show, :update]
+    resources :orders, only:[:index, :show, :update]
     resources :order_details, only:[:update]
     resources :genres, only:[:create, :index, :edit, :update]
     resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :customers
-  devise_for :admins
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :customers, skip:[:passwords], controllers:{
+    registrations: "customers/registrations",
+    sessions: "customers/sessions"
+  }
+  devise_for :admins, skip:[:registrations, :passwords], controllers:{
+    sessions: "admins/sessions"
+  }
 end

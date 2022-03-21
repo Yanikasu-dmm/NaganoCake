@@ -1,4 +1,4 @@
-<header class="navbar navbar navbar-dark bg-light navbar-inverse">
+<header class="navbar navbar navbar-dark bg-light navbar-inverse mb-5">
  <div class="container">
   <nav class='nav navbar-nav navbar-left' >
    <h2><a class="navbar-brand p-3" href = "/" >NaganoCake</a></h2>
@@ -19,10 +19,35 @@
   </li>
 
   <li class="nav-item m-3">
+   <%= link_to "注文履歴", orders_path, class: 'btn btn-outline-secondary' %>
+  </li>
+
+  <li class="nav-item m-3">
    <%= link_to destroy_customer_session_path, :method => :delete ,class:'btn btn-outline-secondary' do %>
     <i class ="fas fa-sign-out-alt"></i>Log out
    <% end %>
   </li>
+
+  <% elsif admin_signed_in? %>
+
+  <li class="nav-item m-3">
+   <%= link_to "商品一覧", admin_items_path, class: 'btn btn-outline-secondary' %>
+  </li>
+
+  <li class="nav-item m-3">
+   <%= link_to "注文履歴", admin_orders_path, class: 'btn btn-outline-secondary' %>
+  </li>
+
+   <li class="nav-item m-3">
+   <%= link_to "顧客一覧", admin_customers_path, class: 'btn btn-outline-secondary' %>
+  </li>
+
+  <li class="nav-item m-3">
+   <%= link_to destroy_admin_session_path, :method => :delete ,class:'btn btn-outline-secondary' do %>
+    <i class ="fas fa-sign-out-alt"></i>Log out
+   <% end %>
+  </li>
+
 
   <% else %>
 
