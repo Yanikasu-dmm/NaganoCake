@@ -60,3 +60,4 @@ gem 'devise'
 gem 'enum_help'
 
 gem 'pry-byebug', group: :development
+gem "tailwindcss-rails", "~> 2.0"
