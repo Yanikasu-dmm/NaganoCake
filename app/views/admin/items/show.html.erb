@@ -28,16 +28,16 @@
       </td>
      </tr>
      <tr>
-      <td>税込価格<br>（税抜価格）</td>
+      <td>税抜価格<br>（税込価格）</td>
       <td><%= @item.price.to_s + "円" %>  (<%= @item.get_tax_include_price.to_s + "円" %>)</td>
      </tr>
      <tr>
       <td>販売ステータス</td>
       <td>
        <% if @item.is_active %>
-        <span class="text-secondary">販売停止中</span>
-       <% else %>
         <span class="text-success">販売中</span>
+       <% else %>
+        <span class="text-secondary">販売停止中</span>
        <% end %>
       </td>
      </tr>
