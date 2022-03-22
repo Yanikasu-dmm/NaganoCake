@@ -11,9 +11,12 @@ class Admin::ItemsController < Admin::ApplicationController
   def create
     @item = Item.new(item_params)
     genre_list = params[:item][:genre].split(',')
-    @item.save
-    @item.save_genres(genre_list)
-    redirect_to admin_items_path
+    if @item.save
+      @item.save_genres(genre_list)
+      redirect_to admin_items_path
+    else
+      render :new
+    end
 
   end
 
