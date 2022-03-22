@@ -30,6 +30,7 @@ class Customers::SessionsController < Devise::SessionsController
     if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
       flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
         redirect_to new_customer_registration_path
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
