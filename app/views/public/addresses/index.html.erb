@@ -1,30 +1,61 @@
 <div class="container">
   <div class="row align-items-center">
     <div class="col">
-      <h1>配送先登録/一覧</h1>
+
+      <div class= "col-3">
+      <div class="title col-md-auto bg-light text-dark mb-4 mx-4">配送先登録/一覧</div>
+      </div>
+
       <%= form_with model: @new_addrese, local: true do |f| %>
-        <ul class="list-unstyled">
+
         <%= f.hidden_field :customer_id, value: current_customer.id %>
-        <li>郵便番号（ハイフンなし）</li>
-        <%= f.text_field :post_code %>
-        <li>住所</li>
-        <%= f.text_area :address_code %>
-        <li>宛名</li>
-        <%= f.text_field :name %>
+        <div class="col-3">
+        <div class="form-group mx-sm-3 mb-2">
+          <div class="field">
+          郵便番号（ハイフンなし）
+          <%= f.text_field :post_code, class:"form-control"%>
+        </div>
+        </div>
+        </div>
+
+
+
+        <div class="col-6">
+          <div class="form-group mx-sm-3 mb-2">
+          <div class="field">
+         住所 <%= f.text_field :address_code, class:"form-control"%>
+        </div>
+        </div>
+        </div>
+
+
+
+        <div class="col-3">
+        <div class="form-group mx-sm-3 mb-2">
+          <div class="field">
+          宛名
+          <%= f.text_field :name, class:"form-control"%>
+        </div>
+        </div>
+        </div>
+        <div class="col-3">
+          <div class="actions col-8 mb-3">
         <%= f.submit "新規登録", class: "btn btn-success" %>
-        </ul>
+        </div>
+        </div>
       <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="col mt-4">
-    <table>
+  <div class="col-8">
+    <table class="table table-bordered">
       <thead>
         <tr>
-          <th>郵便番号</th>
-          <th>住所</th>
-          <th>宛名</th>
-          <th></th>
+          <th scope="col" class="col-2">郵便番号</th>
+          <th scope="col" class="col-2">住所</th>
+          <th scope="col" class="col-2">宛名</th>
+          <th scope="col" class="col-2"></th>
         </tr>
       </thead>
       <% @addresses.each do |address| %>
