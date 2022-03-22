@@ -1,45 +1,45 @@
 <div class = "container">
  <div class ="row">
   <div class="col-md-10">
-  <h2>Customer detail</h2>
+  <h2>会員詳細</h2>
   </div>
 <table class ="table table-borderless">
  <tbody>
   <tr>
-   <td>CustomerID</td>
+   <td>会員ID</td>
    <td><%= @customer.id %></td>
   </tr>
   <tr>
-   <td>Name</td>
-   <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+   <td>名前</td>
+   <td><%= @customer.last_name + ' ' + @customer.first_name %></td>
   </tr>
   <tr>
-   <td>Name kana</td>
-   <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+   <td>フリガナ</td>
+   <td><%= @customer.last_name_kana + ' ' + @customer.first_name_kana %></td>
   </tr>
   <tr>
-   <td>Postcode</td>
+   <td>郵便番号</td>
    <td><%= @customer.post_code %></td>
   </tr>
   <tr>
-   <td>Address</td>
+   <td>住所</td>
    <td><%= @customer.address %></td>
   </tr>
   <tr>
-   <td>Phonenumber</td>
+   <td>電話番号</td>
    <td><%= @customer.phone_number %></td>
   </tr>
   <tr>
-   <td>E-mal</td>
+   <td>メールアドレス</td>
    <td><%= @customer.email %></td>
   </tr>
   <tr>
-   <td>Customerstatus</td>
+   <td>会員ステータス</td>
    <td>
     <% if @customer.is_deleted %>
-        <span class="text-secondary">退会</span>
-       <% else %>
         <span class="text-success">有効</span>
+       <% else %>
+        <span class="text-secondary">退会</span>
        <% end %>
    </td>
   </tr>
