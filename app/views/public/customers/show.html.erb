@@ -1,17 +1,40 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>マイページ</h1>
+      <div scope ="col" class= col-2>
+      <div class="title col-md-auto bg-light text-dark mb-4 mx-4">マイページ</div>
+      </div>
       <p class="ml-3 mt-2">登録情報<%= link_to "編集する", edit_customer_registration_path, class: "btn btn-success py-0 mx-2" %></p>
-
-      <table class="table table-borderless mb-3 w-50 ml-5">
-          <tr><th>氏名</th><td><%= current_customer.last_name %> <%= current_customer.first_name %></td></tr>
-          <tr><th>カナ</th><td><%= current_customer.last_name_kana %> <%= current_customer.first_name_kana %></td></tr>
-          <tr><th>郵便番号</th><td><%= current_customer.post_code %></td></tr>
-          <tr><th>住所</th><td><%= current_customer.address %></td></tr>
-          <tr><th>電話番号</th><td><%= current_customer.phone_number %></td></tr>
-          <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr>
+      
+      <div class="col-8">
+      <table class="table table-bordered">
+          <tr>
+            <td class="bg-light">氏名</td>
+            <td><%= current_customer.last_name %> <%= current_customer.first_name %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">カナ</td>
+            <td><%= current_customer.last_name_kana %> <%= current_customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">郵便番号</td>
+            <td><%= current_customer.post_code %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">住所</td>
+            <td><%= current_customer.address %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">電話番号</td>
+            <td><%= current_customer.phone_number %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">メールアドレス</td>
+            <td><%= current_customer.email %></td>
+          </tr>
+       
       </table>
+      </div>
     </div>
   </div>
 

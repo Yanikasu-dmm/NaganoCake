@@ -1,10 +1,14 @@
 <header class="navbar navbar navbar-dark bg-light navbar-inverse mb-5">
  <div class="container">
   <nav class='nav navbar-nav navbar-left' >
-   <h2><a class="navbar-brand p-3" href = "/" >NaganoCake</a></h2>
+   <h2><a class="navbar-brand p-3 text-dark" href = "/" >NaganoCake</a></h2>
   </nav>
   <ul class="d-flex flex-row navbar-nav ml-auto">
   <% if customer_signed_in? %>
+
+  <li class="nav-item m-4">
+   ようこそ、<%= current_customer.last_name %>　さん！
+  </li>
 
   <li class="nav-item m-3">
    <%= link_to "マイページ", customers_path, class: 'btn btn-outline-secondary' %>
@@ -33,7 +37,7 @@
   <li class="nav-item m-3">
    <%= link_to "商品一覧", admin_items_path, class: 'btn btn-outline-secondary' %>
   </li>
-  
+
   <li class="nav-item m-3">
    <%= link_to "顧客一覧", admin_customers_path, class: 'btn btn-outline-secondary' %>
   </li>
@@ -72,6 +76,10 @@
   </li>
   <% end %>
   </ul>
+   <div class="d-flex flex-row navbar-nav ml-auto">
+  <input type="search" name="search" placeholder="search">
+  <input type="submit" name="submit" value="検索">
+  </div>
  </div>
 
 </header>
