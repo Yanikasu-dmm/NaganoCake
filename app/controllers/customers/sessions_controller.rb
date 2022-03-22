@@ -22,13 +22,16 @@ class Customers::SessionsController < Devise::SessionsController
 
   protected
 
-  def confirm_customer_is_deleted
+
+  def customer_state
+
     @customer = Customer.find_by(email: params[:customer][:email])
     return if !@customer
     if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
-      redirect_to new_customer_session_path
-    end
+      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        redirect_to new_customer_registration_path
   end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
