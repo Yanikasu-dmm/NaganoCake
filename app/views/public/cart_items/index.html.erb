@@ -14,11 +14,11 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">商品名</th>
-            <th scope="col"></th>
-            <th scope="col">単価</th>
-            <th scope="col">数量</th>
-            <th scope="col">小計</th>
+            <th scope="col" class="col-1">商品名</th>
+            <th scope="col" class="col-4"></th>
+            <th scope="col" class="col-2">単価(税込)</th>
+            <th scope="col" class="col-2">数量</th>
+            <th scope="col" class="col-1">小計</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -27,9 +27,14 @@
           <tr>
             <th scope="row"></th>
             <td><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.price %></td>
-            <td><%= cart_item.amount * cart_item.item.price %></td>
-            <td><%= cart_item.amount %></td>
+            <td><%= cart_item.item.get_tax_include_price.to_s + "円" %></td>
+            <td>
+              <%= form_with model:cart_item, url: cart_item_path(cart_item.id), :method => :patch, local: true do |f| %>
+                <%= f.select :amount, *[1..20] %>
+                <%= f.submit '変更', class: "btn btn-success py-0 ml-1" %>
+              <% end %>
+            </td>
+            <td><%= (cart_item.amount * cart_item.item.get_tax_include_price).to_s + "円" %></td>
             <td>
               <%= link_to cart_item_path(cart_item.id) ,:method => :delete do %>
                 <button class="btn btn-danger">削除する</button>
@@ -55,7 +60,7 @@
       <div class="col-5">
         <table class="table table-bordered">
           <td>合計金額</td>
-          <td><%= @total_price %></td>
+          <td><%= @total_price.to_s + "円" %></td>
         </table>
       </div>
     <% end %>

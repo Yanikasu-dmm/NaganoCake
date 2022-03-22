@@ -19,8 +19,15 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @total_price = 0
     @cart_items.each do |cart_item|
-      @total_price += cart_item.item.price * cart_item.amount
+      @total_price += cart_item.item.get_tax_include_price * cart_item.amount
     end
+  end
+
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.amount = params[:amount]
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
   end
 
   def destroy
