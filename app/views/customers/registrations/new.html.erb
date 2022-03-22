@@ -80,11 +80,11 @@
       <div class="row g-3">
         <div class="col-12">
           <div class="field">
-            <%= f.label :パスワード,class:"form-label"  %>
+            <%= f.label :password,"パスワード",class:"form-label"  %>
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> 桁以上)</em>
             <% end %>
-            <%= f.password_field :パスワード, autocomplete: "new-password",class:"form-control" %>
+            <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
       <div class="row g-3">
         <div class="col-12">
           <div class="field">
-            <%= f.label :password_confirmation,class:"form-label"  %>
+            <%= f.label :password_confirmation,"パスワード（確認用）",class:"form-label"  %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class:"form-control"%>
           </div>
         </div>
