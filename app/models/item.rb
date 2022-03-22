@@ -3,6 +3,9 @@ class Item < ApplicationRecord
   has_many :genres, through: :genre_maps
   has_many :cart_items, dependent: :destroy
   has_many :order_details
+  
+  validates :name, presence: true
+  validates :price, presence: true
 
   has_one_attached :image
 
