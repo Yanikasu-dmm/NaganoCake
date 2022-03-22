@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Customers::SessionsController < Devise::SessionsController
-  before_action :confirm_customer_is_deleted, only: [:create]
+  before_action :customer_state, only: [:create]
 
 
 
@@ -24,7 +24,6 @@ class Customers::SessionsController < Devise::SessionsController
 
 
   def customer_state
-
     @customer = Customer.find_by(email: params[:customer][:email])
     return if !@customer
     if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted

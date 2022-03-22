@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @new_address = Address.new
-    @addresses = Address.all
+    @addresses = Address.where(customer: current_customer)
   end
 
   def edit
@@ -23,8 +23,8 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-    @address = Adderss.find(params[:id])
-    @address.destroy
+    address = Address.find(params[:id])
+    address.destroy
     redirect_to addresses_path
   end
 
