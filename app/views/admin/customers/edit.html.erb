@@ -6,7 +6,7 @@
   <%= form_with model:@customer, :url => {:action => :update} do |f| %>
   <div class="row g-3">
    <div class="form-group">
-  　<label for="customer_id">CustomerID</label>
+  　<label for="customer_id">会員ID</label>
   　<%= @customer.id %>
    </div>
   </div>
@@ -14,7 +14,7 @@
   <div class="row g-3">
    <div class="col-sm-6">
     <div class="field">
-    <%= f.label :last_name ,class:"form-label" %><br>
+    <%= f.label :姓 ,class:"form-label" %><br>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",class:"form-control"  %>
     </div>
    </div>
@@ -22,7 +22,7 @@
 
    <div class="col-sm-6">
     <div class="field">
-    <%= f.label :first_name,class:"form-label" %><br/>
+    <%= f.label :名,class:"form-label" %><br/>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "first_name",class:"form-control" %>
     </div>
    </div>
@@ -31,14 +31,14 @@
   <div class="row g-3">
    <div class="col-sm-6">
     <div class="field">
-    <%= f.label :last_name_kana,class:"form-label" %><br />
+    <%= f.label :セイ,class:"form-label" %><br />
     <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana",class:"form-control"  %>
     </div>
    </div>
   
    <div class="col-sm-6">
     <div class="field">
-    <%= f.label :first_name_kana,class:"form-label" %><br />
+    <%= f.label :メイ,class:"form-label" %><br />
     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" ,class:"form-control" %>
     </div>
    </div>
@@ -47,7 +47,7 @@
   <div class="row g-3">
    <div class="col-12">
    <div class="field">
-    <%= f.label :post_code,class:"form-label" %><br />
+    <%= f.label :郵便番号,class:"form-label" %><br />
     <%= f.text_field :post_code, autofocus: true, autocomplete: "post_code",class:"form-control"  %>
     </div>
    </div>
@@ -56,7 +56,7 @@
   <div class="row g-3">
    <div class="col-12">
     <div class="field">
-    <%= f.label :address,class:"form-label" %><br />
+    <%= f.label :住所,class:"form-label" %><br />
     <%= f.text_field :address, autofocus: true, autocomplete: "address",class:"form-control"  %>
     </div>
    </div>
@@ -65,7 +65,7 @@
   <div class="row g-3">
    <div class="col-12">
    <div class="field">
-    <%= f.label :email,class:"form-label" %><br />
+    <%= f.label :メールアドレス,class:"form-label" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form-control" %>
     </div>
    </div>
@@ -74,7 +74,7 @@
   <div class="row g-3">
    <div class="col-12">
    <div class="field">
-    <%= f.label :phone_number,class:"form-label" %><br />
+    <%= f.label :電話番号,class:"form-label" %><br />
     <%= f.text_field :phone_number, autofocus: true, autocomplete: "email" ,class:"form-control" %>
     </div>
    </div>
@@ -84,7 +84,7 @@
    
   
    <div class="form-group">
-    <label for="customer_is_deleted">Customer Status</label>
+    <label for="customer_is_deleted">会員ステータス</label>
     <%= f.radio_button :is_deleted, true %>
     <%= f.label :is_deleted, "有効" %>
     <%= f.radio_button :is_deleted, false %>
