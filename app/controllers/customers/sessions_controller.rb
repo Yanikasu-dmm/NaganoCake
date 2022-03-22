@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Customers::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :confirm_customer_is_deleted, only: [:create]
+
+
 
   # GET /resource/sign_in
   # def new
@@ -18,16 +20,16 @@ class Customers::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
 
 
-def customer_state
+  def customer_state
 
-  @customer = Customer.find_by(email: params[:customer][:email])
-  return if !@customer
-  if @customer.valid_password?(params[:customer][:password]) && (@user.is_deleted == false)
-    flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-      redirect_to new_customer_registration_path
+    @customer = Customer.find_by(email: params[:customer][:email])
+    return if !@customer
+    if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
+      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        redirect_to new_customer_registration_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.
