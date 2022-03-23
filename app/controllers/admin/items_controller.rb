@@ -13,7 +13,7 @@ class Admin::ItemsController < Admin::ApplicationController
     genre_list = params[:item][:genre].split(',')
     if @item.save
       @item.save_genres(genre_list)
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       render :new
     end

@@ -19,11 +19,11 @@
           <tbody>
             <% @cart_items.each do |cart_item| %>
             <tr>
-              <th scope="row"></th>
+              <th scope="row"><%= image_tag cart_item.item.get_image, size: '100x40' %></th>
               <td><%= cart_item.item.name %></td>
-              <td><%= cart_item.item.get_tax_include_price %></td>
-              <td><%= cart_item.amount %></td>
-              <td><%= cart_item.amount * cart_item.item.get_tax_include_price %></td>
+              <td><%= cart_item.item.get_tax_include_price.to_s + "円" %></td>
+              <td><%= cart_item.amount.to_s + "個" %></td>
+              <td><%= (cart_item.amount * cart_item.item.get_tax_include_price).to_s + "円" %></td>
             </tr>
             <% end %>
           </tbody>
@@ -33,15 +33,15 @@
         <table class="table table-bordered">
             <tr>
                 <td>送料</td>
-                <td><%= @order.postage %></td>
+                <td><%= @order.postage.to_s + "円" %></td>
             </tr>
             <tr>
                 <td>商品合計</td>
-                <td><%= @order.total_price %></td>
+                <td><%= @order.total_price.to_s + "円" %></td>
             </tr>
             <tr>
                 <td>請求額合計</td>
-                <td><%= @order.postage + @order.total_price %></td>
+                <td><%= (@order.postage + @order.total_price).to_s + "円" %></td>
             </tr>
         </table>
     </div>

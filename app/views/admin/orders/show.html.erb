@@ -74,7 +74,7 @@
               <td><%= order_detail.item.get_tax_include_price.to_s + "円" %></td>
               <td><%= order_detail.amount.to_s + "個" %></td>
               <td><%= (order_detail.item.price * order_detail.amount).to_s + "円"%></td>
-              <%= form_with model: order_detail, url: admin_order_detail_path do |f| %>
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
                 <td><%= f.select :product_status, [["制作不可", "cannot_product"], ["制作待ち", "wating_product"], ["製作中", "producting"], ["制作完了", "finish_product"]]  %></td>
                 <td><%= f.submit "更新する", class: "btn btn-success" %></td>
               <% end %>

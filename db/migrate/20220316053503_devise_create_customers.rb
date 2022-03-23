@@ -5,17 +5,17 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
     create_table :customers do |t|
       ## Database authenticatable
        t.datetime :remember_created_at
-      t.string :last_name,   null: false, default: ""
-      t.string :first_name,  null: false, default: ""
-      t.string :last_name_kana,   null: false, default: ""
-      t.string :first_name_kana,  null: false, default: ""
-      t.string :address,    null: false, default: ""
-      t.string :post_code,  null: false, default: ""
-      t.string :email,        null: false, default: ""
-      t.string :phone_number,    null: false, default: ""
-      t.boolean :is_deleted,  null:false, default: "FALSE"
+      t.string :last_name,   null: false
+      t.string :first_name,  null: false
+      t.string :last_name_kana,   null: false
+      t.string :first_name_kana,  null: false
+      t.string :address,    null: false
+      t.string :post_code,  null: false
+      t.string :email,        null: false
+      t.string :phone_number,    null: false
+      t.boolean :is_deleted,  null:false, default: false
 
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false
 
       ## Recoverable
       t.string   :reset_password_token

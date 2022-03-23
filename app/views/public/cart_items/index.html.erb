@@ -27,7 +27,7 @@
         <tbody>
           <% @cart_items.each do |cart_item| %>
           <tr>
-            <th scope="row"></th>
+            <th scope="row"><%= image_tag cart_item.item.get_image, size: '100x40' %></th>
             <td><%= cart_item.item.name %></td>
             <td><%= cart_item.item.get_tax_include_price.to_s + "円" %></td>
             <td>
@@ -54,7 +54,7 @@
   </div>
   <div class="row justify-content-between">
     <div class="col">
-      <%= link_to items_path do %>
+      <%= link_to root_path do %>
         <button class="btn btn-primary">買い物を続ける</button>
       <% end %>
     </div>

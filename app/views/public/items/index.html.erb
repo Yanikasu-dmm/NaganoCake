@@ -23,9 +23,11 @@
    <div class="row">
    <% @items.each do |items| %>
    <div class="col-md-4">
-    <h3><%= image_tag items.get_image, size: '100x100' %></h3>
-     <p><%= link_to items.name, item_path(items.id) %></p>
-    <p><%= items.price.to_s + "円" %></p>
+      <%= link_to item_path(items.id) do %>
+       <h3><%= image_tag items.get_image, size: '100x100' %></h3>
+      <% end %>
+       <p><%= items.name%></p>
+      <p><%= items.price.to_s + "円" %></p>
      </div>
    <% end %>
 

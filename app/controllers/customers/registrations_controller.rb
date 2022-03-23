@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Customers::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_permitted_parameters, only: [:create]
-  before_action :configure_permitted_parameters, only: [:update]
 
   # GET /resource/sign_up
   # def new

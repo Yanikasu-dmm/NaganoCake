@@ -87,12 +87,16 @@
       </div>
 
       <div class="row g-3">
-        <div class="actions col-8">
+        <div class="actions col-4">
           <%= f.submit "更新",class:" btn btn-success mt-4"  %>
         </div>
 
         <div class="actions col-4">
           <%= link_to "戻る", :back, class:" btn btn-primary mt-4"%>
+        </div>
+        
+        <div class="col-4">
+          <%= link_to "退会する", unsbscribe_customers_path, class: "btn btn-danger mt-4" %>
         </div>
       </div>
     <% end %>

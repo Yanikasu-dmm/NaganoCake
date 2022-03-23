@@ -12,8 +12,10 @@
  <h3>新着商品</h3>
  <div class="row">
    <% @items.each do |items| %>
-    <%= image_tag items.get_image, size: '100x100' %>
-    <%= link_to items.name, item_path(items.id) %>
+    <%= link_to item_path(items.id) do %>
+     <%= image_tag items.get_image, size: '100x100' %>
+    <% end %>
+    <%= items.name %>
     <%= items.price %>円
    <% end %>
   </div></br></br>
