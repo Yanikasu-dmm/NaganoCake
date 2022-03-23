@@ -5,7 +5,9 @@
       </div>
       <% if !@cart_items.empty? %>
         <div class="col-3">
-          <button class="btn btn-danger">カートを空にする</button>
+          <%= link_to destroy_all_cart_items_path, :method => :delete do %>
+            <button class="btn btn-danger">カートを空にする</button>
+          <% end %>
         </div>
       <% end %>
   </div>
