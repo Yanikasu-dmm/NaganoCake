@@ -1,5 +1,6 @@
-<div class="container">
-  <div class="row mb-5">
+<div class="container mb-5">
+  <%= form_with model: @order, :url => {:action => :confirm}, class: "w-100", local: true do |f| %>
+    <div class="row mb-5">
       <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">カート</span>
@@ -24,7 +25,6 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">請求先</h4>
-      <%= form_with model: @order, :url => {:action => :confirm}, class: "w-100", local: true do |f| %>
         <hr class="mb-4">
         <div class="custom-control custom-radio">
           <%= f.radio_button :select_address, 0, checked: true %>
@@ -75,6 +75,6 @@
         <hr class="mb-4">
         <%= f.hidden_field :postage, value: 800 %>
         <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg btn-block" %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>

@@ -16,6 +16,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-5"><%= image_tag @item.get_image, size: '200x200'%></div>
+          <%= form_with model: @cart_item, url: cart_items_path, :method => :post, local: true do |f| %>
         <table class="table table-borderless col">
           <tr>
             <td><%= @item.name %></td>
@@ -26,7 +27,6 @@
           <tr>
             <td><%= @item.get_tax_include_price.to_s + "円" %><strong>(税込み)</strong></td>
           </tr>
-          <%= form_with model: @cart_item, url: cart_items_path, :method => :post, local: true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
             <tr>
               <td><%= f.select :amount, *[1..20]%>個</td>
