@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
-  has_many :genre_maps, dependent: :destroy
+  has_many :genre_maps, dependent: :destroy, foreign_key: 'item_id'
   has_many :genres, through: :genre_maps
   has_many :cart_items, dependent: :destroy
   has_many :order_details
-  
+
   validates :name, presence: true
   validates :price, presence: true
 

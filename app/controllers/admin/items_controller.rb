@@ -30,8 +30,13 @@ class Admin::ItemsController < Admin::ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admin_item_path
+    genre_list = params[:item][:genre].split(',')
+    if @item.update(item_params)
+      @item.save_genres(genre_list)
+      redirect_to admin_item_path(@item.id)
+    else
+      render :new
+    end
   end
 
   def destroy
