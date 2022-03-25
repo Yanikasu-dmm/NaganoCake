@@ -1,45 +1,44 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    get 'admin' => 'homes#top'
+    resources :customers, only:[:index, :show, :edit, :update]
+    resources :orders, only:[:index, :show, :update]
+    resources :order_details, only:[:update]
+    resources :genres, only:[:create, :index, :edit, :update]
+    resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
   end
-  namespace :admin do
-    get 'orders/show'
+
+  scope module: :public do
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
+    resources :addresses, only:[:create, :index, :edit, :update, :destroy]
+    resources :orders, only:[:new, :create, :index, :show] do
+      collection do
+        post 'confirm'
+      end
+      member do
+        get 'complete'
+      end
+    end
+    resources :items, only:[:index, :show]
+    resources :cart_items, only:[:index, :create, :update, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+    resource :customers, only:[:show] do
+      collection do
+        get 'unsbscribe'
+        patch 'withdraw'
+      end
+    end
   end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'items/new'
-    get 'items/index'
-    get 'items/show'
-    get 'items/edit'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/complete'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-  end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/unsbscribe'
-  end
-  devise_for :customers
-  devise_for :admins
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  devise_for :customers, skip:[:passwords], controllers:{
+    registrations: "customers/registrations",
+    sessions: "customers/sessions"
+  }
+  devise_for :admins, skip:[:registrations, :passwords], controllers:{
+    sessions: "admins/sessions"
+  }
 end

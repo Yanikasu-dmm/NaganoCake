@@ -1,2 +1,78 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container mt-3">
+  <div class="row justify-content-between mb-4">
+      <div class="title col-3 px-auto">
+        <p class="text-dark bg-light text-center">ショッピングカート</p>
+      </div>
+      <% if !@cart_items.empty? %>
+        <div class="col-3">
+          <%= link_to destroy_all_cart_items_path, :method => :delete do %>
+            <button class="btn btn-danger">カートを空にする</button>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+  <div class="row">
+    <% if !@cart_items.empty? %>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="col-1">商品名</th>
+            <th scope="col" class="col-4"></th>
+            <th scope="col" class="col-2">単価(税込)</th>
+            <th scope="col" class="col-2">数量</th>
+            <th scope="col" class="col-1">小計</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <th scope="row"><%= image_tag cart_item.item.get_image, size: '100x40' %></th>
+            <td><%= cart_item.item.name %></td>
+            <td><%= cart_item.item.get_tax_include_price.to_s + "円" %></td>
+            <td>
+              <%= form_with model:cart_item, url: cart_item_path(cart_item.id), :method => :patch, local: true do |f| %>
+                <%= f.select :amount, *[1..20] %>
+                <%= f.submit '変更', class: "btn btn-success py-0 ml-1" %>
+              <% end %>
+            </td>
+            <td><%= (cart_item.amount * cart_item.item.get_tax_include_price).to_s + "円" %></td>
+            <td>
+              <%= link_to cart_item_path(cart_item.id) ,:method => :delete do %>
+                <button class="btn btn-danger">削除する</button>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="col d-flex align-items-center" style="height:400px;">
+        <h1>カートは空です</h1>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-between">
+    <div class="col">
+      <%= link_to items_path do %>
+        <button class="btn btn-primary">買い物を続ける</button>
+      <% end %>
+    </div>
+    <% if !@cart_items.empty? %>
+      <div class="col-5">
+        <table class="table table-bordered">
+          <td>合計金額</td>
+          <td><%= @total_price.to_s + "円" %></td>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <% if !@cart_items.empty? %>
+    <div class="row justify-content-center mt-4">
+      <%= link_to new_order_path do %>
+        <button class="btn btn-success">情報入力に進む</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

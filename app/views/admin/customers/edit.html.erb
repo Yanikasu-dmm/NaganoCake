@@ -1,2 +1,101 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<body>
+ <div class="container">
+  <div class="col-md-7 col-lg-8">
+  <h2 class="mb-3">会員情報編集</h2>
+
+  <%= form_with model:@customer, :url => {:action => :update} do |f| %>
+  <div class="row g-3">
+   <div class="form-group">
+  　<label for="customer_id">会員ID</label>
+  　<%= @customer.id %>
+   </div>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-sm-6">
+    <div class="field">
+    <%= f.label :姓 ,class:"form-label" %><br>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",class:"form-control"  %>
+    </div>
+   </div>
+
+
+   <div class="col-sm-6">
+    <div class="field">
+    <%= f.label :名,class:"form-label" %><br/>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",class:"form-control" %>
+    </div>
+   </div>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-sm-6">
+    <div class="field">
+    <%= f.label :セイ,class:"form-label" %><br />
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana",class:"form-control"  %>
+    </div>
+   </div>
+
+   <div class="col-sm-6">
+    <div class="field">
+    <%= f.label :メイ,class:"form-label" %><br />
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" ,class:"form-control" %>
+    </div>
+   </div>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-12">
+   <div class="field">
+    <%= f.label :郵便番号,class:"form-label" %><br />
+    <%= f.text_field :post_code, autofocus: true, autocomplete: "post_code",class:"form-control"  %>
+    </div>
+   </div>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-12">
+    <div class="field">
+    <%= f.label :住所,class:"form-label" %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address",class:"form-control"  %>
+    </div>
+   </div>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-12">
+   <div class="field">
+    <%= f.label :メールアドレス,class:"form-label" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form-control" %>
+    </div>
+   </div>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-12">
+   <div class="field">
+    <%= f.label :電話番号,class:"form-label" %><br />
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "email" ,class:"form-control" %>
+    </div>
+   </div>
+  </div>
+  <br>
+
+
+
+   <div class="form-group">
+    <label for="customer_is_deleted">会員ステータス</label>
+    <%= f.radio_button :is_deleted, false %>
+    <%= f.label :is_deleted, "有効" %>
+    <%= f.radio_button :is_deleted, true %>
+    <%= f.label :is_deleted, "退会" %>
+   </div>
+
+   <div class="actions col-8">
+   　<%= f.submit '変更を保存',class:"btn btn-sm btn-success"%>
+　 </div>
+
+  <% end %>
+  </div>
+ </div>
+</body>

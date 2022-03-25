@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="title col-md-auto mt-5 bg-light text-dark">
+      注文情報確認
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">商品名</th>
+              <th scope="col"></th>
+              <th scope="col">単価</th>
+              <th scope="col">数量</th>
+              <th scope="col">小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+            <tr>
+              <th scope="row"><%= image_tag cart_item.item.get_image, size: '100x40' %></th>
+              <td><%= cart_item.item.name %></td>
+              <td><%= cart_item.item.get_tax_include_price.to_s + "円" %></td>
+              <td><%= cart_item.amount.to_s + "個" %></td>
+              <td><%= (cart_item.amount * cart_item.item.get_tax_include_price).to_s + "円" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-bordered">
+            <tr>
+                <td>送料</td>
+                <td><%= @order.postage.to_s + "円" %></td>
+            </tr>
+            <tr>
+                <td>商品合計</td>
+                <td><%= @order.total_price.to_s + "円" %></td>
+            </tr>
+            <tr>
+                <td>請求額合計</td>
+                <td><%= (@order.postage + @order.total_price).to_s + "円" %></td>
+            </tr>
+        </table>
+    </div>
+  </div>
+  <div class="row">
+      <table class="w-75 mt-4">
+          <th class="col-2"></th>
+          <th class="col-10"></th>
+          <tr>
+              <td>支払方法</td>
+              <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr class="">
+              <td>お届け先</td>
+              <td>
+                  <%= @full_address %>
+              </td>
+          </tr>
+      </table>
+  </div>
+  <div class="row　align-center mt-4">
+        <%= link_to '注文を確定する', orders_path(id: @order.id), :method => :post, class: "btn btn-success" %>
+  </div>
+ </div>
